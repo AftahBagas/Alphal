@@ -1,11 +1,4 @@
-# pylint: disable=missing-module-docstring
-#
-# Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
-#
-# This file is part of < https://github.com/UsergeTeam/Userge > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/uaudith/Userge/blob/master/LICENSE >
-#
+# alfareza
 # All rights reserved.
 
 import time
@@ -14,7 +7,7 @@ from typing import Dict, Tuple
 
 from pyrogram.errors.exceptions import FloodWait
 
-import userge
+import alpha
 from .tools import humanbytes, time_formatter
 
 _TASKS: Dict[str, Tuple[int, int]] = {}
@@ -22,10 +15,10 @@ _TASKS: Dict[str, Tuple[int, int]] = {}
 
 async def progress(current: int,
                    total: int,
-                   message: 'userge.Message',
+                   message: 'alpha.Message',
                    ud_type: str,
                    file_name: str = '',
-                   delay: int = userge.Config.EDIT_SLEEP_TIMEOUT) -> None:
+                   delay: int = alpha.Config.EDIT_SLEEP_TIMEOUT) -> None:
     """ progress function """
     if message.process_is_canceled:
         await message.client.stop_transmission()
