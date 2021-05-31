@@ -12,24 +12,23 @@ from time import time
 from git import Repo
 from git.exc import GitCommandError
 
-from userge import userge, Message, Config, pool
+from alpha import alpha, Message, Config, pool
 
 LOG = userge.getLogger(__name__)
 CHANNEL = userge.getCLogger(__name__)
 
 
-@userge.on_cmd("update", about={
+@alpha.on_cmd("update", about={
     'header': "Check Updates or Update AlphaZ Plugins",
     'flags': {
         '-pull': "pull updates",
         '-push': "push updates to heroku",
         '-alpha': "select alpha branch",
-        '-beta': "select beta branch"},
     'usage': "{tr}update : check updates from alpha branch\n"
              "{tr}update -[branch_name] : check updates from any branch\n"
              "add -pull if you want to pull updates\n"
              "add -push if you want to push updates to heroku",
-    'examples': "{tr}update -beta -pull -push"}, del_pre=True, allow_channels=False)
+    'examples': "{tr}update -alpha -pull -push"}, del_pre=True, allow_channels=False)
 async def check_update(message: Message):
     """ check or do updates """
     await message.edit("`update AlphaZ Plugins 😈`")
@@ -64,7 +63,7 @@ async def check_update(message: Message):
         return
     if not (pull_from_repo or push_to_heroku):
         if out:
-            change_log = f'**UPDATE BARU Ni YA TOLOL for [{branch}]:\n\n📄 CHANGELOG 📄**\n\n'
+            change_log = f'**Update Baru Untuk [{branch}]:\n\n📄 CHANGELOG 📄**\n\n'
             await message.edit_or_send_as_file(change_log + out, disable_web_page_preview=True)
         else:
             await message.edit(f'__AlphaZ-Plugins is up-to-date with [{branch}]__', del_in=5)
@@ -115,7 +114,7 @@ async def _push_to_heroku(msg: Message, repo: Repo, branch: str) -> None:
     sent = await msg.edit(
         f'`Sedang mengupdate sekarang [{branch}] ke heroku...\n'
         'tunggu 5 min dulu ya`\n\n'
-        f'➥ **Restart** sabar ya tolol 😈 `{Config.CMD_TRIGGER}restart -h`\n\n'
+        f'➥ **Restart** sabar ya njir 😈 `{Config.CMD_TRIGGER}restart -h`\n\n'
         '➥ tunggu setelah **AlphaZ Plugins** Sukses ter update, lalu cek update kembali **㋡**')
     try:
         await _heroku_helper(sent, repo, branch)
