@@ -8,9 +8,9 @@
 #
 # All rights reserved.
 
-from userge.logger import logging  # noqa
-from userge.config import Config, get_version  # noqa
-from userge.core import (  # noqa
-    Userge, filters, Message, get_collection, pool)
+from alpha.logger import logging  # noqa
+from alpha.config import Config, get_version  # noqa
+from alpha.core import (  # noqa
+    Alpha, filters, Message, get_collection, pool)
 
-userge = Userge()  # userge is the client name
+alpha = Alpha()  # alpha is the client name
